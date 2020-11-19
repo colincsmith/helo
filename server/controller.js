@@ -11,37 +11,25 @@ module.exports = {
         const salt = bcrypt.genSaltSync(10)
         const hash = bcrypt.hashSync(password, salt)
         const[newUser] = await db.add_user([username, hash])
-        req.session.user = {
-            userId: newUser.id,
-            username: newUser.username
-        }
-        res.status(200).send(req.session.user)
+        res.status(200).send(newUser)
     },
 
     login: async (req, res) => {
         const db = req.app.get('db')
         const {username, password} = req.body
         const [foundUser] = await db.check_user(username)
-        if(!foundUser){
+        const user = foundUser[0]
+        if(!user){
             return res.status(401).send('incorrect info')
         }
-        const authenticated = bcrypt.compareSync(password, foundUser.password)
+        const authenticated = bcrypt.compareSync(password, user.password)
         if(authenticated){
-            req.session.user = {
-                userId: foundUser.id,
-                username: foundUser.username
-            }
-            res.status(200).send(req.session.user)
+            return res.status(200).send({
+                id: user.id,
+                username: user.username
+            })
         } else {
             res.status(401).send('incorrect info')
-        }
-    },
-
-    getUser: (req, res) => {
-        if(req.session.user){
-            res.status(200).send(req.session.user)
-        } else {
-            res.status(202).send('please log in')
         }
     }
 }

@@ -1,11 +1,8 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
 
 class Nav extends Component{
-    constructor(){
-        super()
-    }
-
     render(){
         return(
             <div>This is the Nav Component
@@ -17,4 +14,10 @@ class Nav extends Component{
     }
 }
 
-export default Nav
+function mapStateToProps(state){
+    return{
+        username: state.username
+    }
+}
+
+export default connect(mapStateToProps)(Nav)

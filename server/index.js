@@ -4,7 +4,7 @@ const session = require('express-session')
 require('dotenv').config()
 
 const {SESSION_SECRET, SERVER_PORT, CONNECTION_STRING} = process.env
-const auth = require('./controllers/authController')
+const auth = require('./controller')
 
 const app = express()
 
@@ -31,6 +31,5 @@ massive({
 
 app.post('/auth/register', auth.register)
 app.post('/auth/login', auth.login)
-app.get('/api/user', auth.getUser)
 
 app.listen(SERVER_PORT, () => console.log(`server listening on port ${SERVER_PORT} g`))
