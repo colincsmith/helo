@@ -29,7 +29,7 @@ class Auth extends Component{
         const {username, password} = this.state
         try{
             const user = await axios.post('/auth/login', {username, password})
-            this.props.getUser(user.data.id, user.data.username)
+            this.props.getUser(user.data.id, user.data.username, user.data.picture)
             this.props.history.push('/dashboard')
         } catch(err){
             alert(err.response.request.response)
@@ -40,7 +40,7 @@ class Auth extends Component{
         const {username, password} = this.state
         try {
             const user = await axios.post('/auth/register', {username, password})
-            this.props.getUser(user.data.id, user.data.username)
+            this.props.getUser(user.data.id, user.data.username, user.data.picture)
             this.props.history.push('/dashboard')
         }
         catch(err)

@@ -31,5 +31,11 @@ massive({
 
 app.post('/auth/register', auth.register)
 app.post('/auth/login', auth.login)
+app.get('/dashboard/posts', auth.getPosts);
+app.get('/post/:id', auth.getPost);
+app.post('/form', auth.addPost);
+app.delete('/post/delete/:id', auth.deletePost);
+app.post('/api/auth/logout', auth.logout);
+app.get('/api/auth/me', auth.getMe);
 
 app.listen(SERVER_PORT, () => console.log(`server listening on port ${SERVER_PORT}`))
