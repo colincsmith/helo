@@ -32,4 +32,4 @@ massive({
 app.post('/auth/register', auth.register)
 app.post('/auth/login', auth.login)
 
-app.listen(SERVER_PORT, () => console.log(`server listening on port ${SERVER_PORT} g`))
+app.listen(SERVER_PORT, () => console.log(`server listening on port ${SERVER_PORT}`))

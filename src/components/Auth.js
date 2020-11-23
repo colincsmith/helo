@@ -25,7 +25,7 @@ class Auth extends Component{
         })
     }
 
-    login = async (e) => {
+    login = async () => {
         const {username, password} = this.state
         try{
             const user = await axios.post('/auth/login', {username, password})

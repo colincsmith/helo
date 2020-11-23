@@ -1,7 +1,7 @@
 CREATE TABLE users (
 id SERIAL PRIMARY KEY,
 username VARCHAR(20) NOT NULL,
-password VARCHAR(20) NOT NULL,
+password TEXT NOT NULL,
 profile_pic TEXT NOT NULL
 );
 
@@ -19,3 +19,6 @@ CREATE TABLE post (
 INSERT INTO post (title, img, content, author_id)
 VALUES 
 ('forehead', 'forehead.jpeg', 'head', 1);
+
+ALTER TABLE users 
+ADD COLUMN picture TEXT;
